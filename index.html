@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-6">
           <h4>Results and Next Steps</h4>
-          <div id="result"><small class="text-muted">Please answers the questions on the left for recommended next steps.</small></div>
+          <div id="result"><small class="text-muted">Answers questions on the left for recommended next steps.</small></div>
         </div>
       </div>
       <div class="row">
@@ -62,9 +62,6 @@
     <script type="text/javascript" src="https://code.cloudcms.com/alpaca/1.5.17/bootstrap/alpaca.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/ace/1.2.4/min/ace.js"></script>
-    <script type="text/javascript">
-      var YN = ['Yes', 'No'];
-    </script>
     <script id="source" type="text/javascript">
       var algorithm = {
         title: 'Intussusception',
@@ -75,14 +72,14 @@
             note: 'Low risk if poorly differentiated abd pain or non-episodic. Moderate/high risk if palpable mass, episodic fussiness/pain, bloody stool, lethargy.'
           },{
             id: 'cecum',
-            q: ['Cecum visualized on AP & decub x-ray?', YN],
+            q: ['Cecum visualized on AP & decub x-ray?', ['Yes', 'No']],
           },{
             id: 'us',
-            q: ['Ultrasound positive for intussusception?', YN],
+            q: ['Ultrasound positive for intussusception?', ['Yes', 'No']],
           }
         ],
         responses: [
-          {default: true, response: 'More information needed. Refer to <a href="http://child.childrens.sea.kids/Documents/Clinical_Standard_Work_Pathways_and_Tools/Pneumonia/Pneumonia_Pathway.aspx">Pneumonia pathway</a>.'},
+          {default: true, response: 'More information needed. Refer to the <a href="http://child.childrens.sea.kids/Documents/Clinical_Standard_Work_Pathways_and_Tools/Pneumonia/Pneumonia_Pathway.aspx">Pneumonia Pathway</a>.'},
           {us: 'Yes', response: 'Confirmed intussusception:<ol><li>Consult gen surg</li><li>ED provider order cefoxitin and abdominal 2 view X-ray prior to contrast enema</li><li>Air/contrast enema</li></ol>'},
           {us: 'No', response: 'Intussusception ruled out. Continue medical assessment.'},
           {risk: 'Low', cecum: '', response: 'Low risk patients start with AP & decub 2-view X-ray. Keep NPO.'},
@@ -114,6 +111,7 @@
         var field_options = _.reduce(alg.questions, function(p, question) {
           p[question.id] = {
             hideNone: true,
+            sort: false,
             helper: question.note
           }
           return p;
