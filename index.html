@@ -177,6 +177,7 @@
         $('#update').click(function() {
           eval(editor.getValue());
           alpacaForm.destroy();
+          $result.html('<small class="text-muted">Answers questions on the left for recommended next steps.</small>');
           initAlgorithm(algorithm);
         });
 
